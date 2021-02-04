@@ -1,0 +1,6 @@
+git pull - updates repo on your machine
+
+git checkout -b <branchname> -creates branch where you do your changes 
+git branch --show-current -shows current branch
+
+
