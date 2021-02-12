@@ -3,8 +3,8 @@
 class UVSim
 {
     public:
-        UVSim() = default;
-        ~UVSim() = default;
+        UVSim();
+        ~UVSim();
 
         //METHODS
 
