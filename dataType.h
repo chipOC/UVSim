@@ -9,7 +9,7 @@ public:
 	
 
 	bool writeWord(int data); // Changes the value of the word to data provided. Returns true if the written value was within bounds. Returns false if the written value was out of bounds, and sets the data to max (if over) or min (if under) value
-	int readWord();
+	int readWord(); // Returns the integer value contained within word. Will be within the bounds of [MIN_WORD_VALUE, MAX_WORD_VALUE] inclusive
 
 protected:
 	int data;
