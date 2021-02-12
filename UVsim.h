@@ -1,21 +1,23 @@
+#include "dataType.h"
+
 class UVSim
 {
     public:
-        UVSim();
-        ~UVSim();
+        UVSim() = default;
+        ~UVSim() = default;
 
         //METHODS
 
     protected:
         //Initialize the operations
         //Memory allocation of 100 all initialized to 0
-        int mainMemory[100] = { };
+        word mainMemory[100] = { };
 
-        //register
-        int simRegister = 0;        //TODO: WHAT IS THE REGISTER!?=-=-=-=-=-=-======================================================
+        //program counter
+        word pc = word(0);       //Holds the index for the next instruction to be executed from mainMemory
 
         //accumulator
-        int accumulator = 0;        //This will hold data that will be used in some way
+        word accumulator = word(0);        //This will hold data that will be used in some way
 
         //Vocam Definitions with values
             //i/o
