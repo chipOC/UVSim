@@ -1,5 +1,4 @@
 #include "dataType.h"
-#include <iostream>
 
 class UVSim
 {

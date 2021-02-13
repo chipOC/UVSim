@@ -1,4 +1,5 @@
 #include <UVsim.h>
+#include <iostream>
 
 
 UVSim::UVSim()
@@ -20,77 +21,100 @@ int UVSim::execute() {
 		switch (pc.getOpCode()) {
 
 		// IO
-		case READ: {
+		case READ:
+		{
 			// TODO call read function
 			// read(pc.getOperand())
+			break;
 		}
 
-		case WRITE: {
+		case WRITE: 
+		{
 			// TODO call write function
 			// write(pc.getOperand())
+			break;
 		}
 
 		// Load/Store
-		case LOAD: {
+		case LOAD: 
+		{
 			// TODO call load function
 			// load(pc.getOperand())
+			break;
 		}
 
-		case STORE: {
+		case STORE:
+		{
 			// TODO call store function
 			// store(pc.getOperand())
+			break;
 		}
 
 
 		// Arithmetic
-		case ADD: {
+		case ADD: 
+		{
 			// TODO call add function
 			// add(pc.getOperand())
+			break;
 		}
 
-		case SUBTRACT: {
+		case SUBTRACT: 
+		{
 			// TODO call subtract function
 			// subtract(pc.getOperand())
+			break;
 		}
 
-		case DIVIDE: {
+		case DIVIDE: 
+		{
 			// TODO call divide function
 			// divide(pc.getOperand())
+			break;
 		}
 
-		case MULTIPLY: {
+		case MULTIPLY: 
+		{
 			// TODO call multiply function
 			// multiply(pc.getOperand())
+			break;
 		}
 
 
 		// Control Operations
-		case BRANCH: {
+		case BRANCH: 
+		{
 			// TODO call branch function
 			// branch(pc.getOperand())
+			break;
 		}
 
-		case BRANCHNEG: {
+		case BRANCHNEG: 
+		{
 			// TODO call branchNeg function
 			// branchNeg(pc.getOperand())
+			break;
 		}
 
-		case BRANCHZERO: {
+		case BRANCHZERO: 
+		{
 			// TODO call branchZero function
 			// branchZero(pc.getOperand())
+			break;
 		}
 
-		case HALT: {
+		case HALT: 
+		{
 			stillRunning = false;
+			break;
 		}
 
 		default:
-			std::cerr << "Error: improper or unimplemented opcode found\n";
+		{
+			std::cerr << "Error: Improper or unimplemented opcode [" << pc.getOpCode() << "] found\n";
 			return -1;
-
 		}
-
-
+		}
 	}
 
 
