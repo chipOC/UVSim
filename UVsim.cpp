@@ -1,4 +1,4 @@
-#include "UVsim.h"
+#include <UVsim.h>
 #include <iostream>
 #include <cstdio>
 
@@ -27,6 +27,7 @@ int UVSim::execute() {
 		case READ:
 		{
 			// TODO call read function
+
 			// read(instruction.getOperand())
 			pc.increment();
 			break;
