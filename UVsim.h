@@ -1,5 +1,7 @@
 #include "dataType.h"
 
+static const int MAIN_MEMORY_SIZE = 100;
+
 class UVSim
 {
     public:
@@ -9,11 +11,13 @@ class UVSim
         //METHODS
 
         int execute();
+        bool insertInstruction(int index, int data); // inserts integer into memory index
+        void dumpMemory(); // dumps all mainMemory as int for debugging
 
     protected:
         //Initialize the operations
         //Memory allocation of 100 all initialized to 0
-        word mainMemory[100] = { };
+        word mainMemory[MAIN_MEMORY_SIZE] = { };
 
         //program counter
         word pc = word(0);       //Holds the index for the next instruction to be executed from mainMemory
