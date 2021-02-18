@@ -27,7 +27,6 @@ int UVSim::execute() {
 		case READ:
 		{
 			// TODO call read function
-
 			// read(instruction.getOperand())
 			pc.increment();
 			break;
@@ -62,32 +61,28 @@ int UVSim::execute() {
 		// Arithmetic
 		case ADD: 
 		{
-			// TODO call add function
-			// add(instruction.getOperand())
+			this->add(instruction.getOperand());
 			pc.increment();
 			break;
 		}
 
 		case SUBTRACT: 
 		{
-			// TODO call subtract function
-			// subtract(instruction.getOperand())
+			this->subtract(instruction.getOperand());
 			pc.increment();
 			break;
 		}
 
 		case DIVIDE: 
 		{
-			// TODO call divide function
-			// divide(instruction.getOperand())
+			this->divide(instruction.getOperand());
 			pc.increment();
 			break;
 		}
 
 		case MULTIPLY: 
 		{
-			// TODO call multiply function
-			// multiply(instruction.getOperand())
+			this->multiply(instruction.getOperand());
 			pc.increment();
 			break;
 		}
