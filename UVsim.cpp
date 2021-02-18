@@ -1,4 +1,4 @@
-#include <UVsim.h>
+#include <UVsim.h>;
 #include <iostream>
 #include <cstdio>
 
@@ -62,32 +62,28 @@ int UVSim::execute() {
 		// Arithmetic
 		case ADD: 
 		{
-			// TODO call add function
-			// add(instruction.getOperand())
+			this->add(instruction.getOperand());
 			pc.increment();
 			break;
 		}
 
 		case SUBTRACT: 
 		{
-			// TODO call subtract function
-			// subtract(instruction.getOperand())
+			this->subtract(instruction.getOperand());
 			pc.increment();
 			break;
 		}
 
 		case DIVIDE: 
 		{
-			// TODO call divide function
-			// divide(instruction.getOperand())
+			this->divide(instruction.getOperand());
 			pc.increment();
 			break;
 		}
 
 		case MULTIPLY: 
 		{
-			// TODO call multiply function
-			// multiply(instruction.getOperand())
+			this->multiply(instruction.getOperand());
 			pc.increment();
 			break;
 		}
@@ -153,9 +149,9 @@ void UVSim::dumpMemory()
 		printf("%6d%01d", 0, i);
 	printf("\n");
 
-	
+
 	// printing rows
-	for (int i = 0; i < MAIN_MEMORY_SIZE; i += numColumns) 
+	for (int i = 0; i < MAIN_MEMORY_SIZE; i += numColumns)
 	{
 		printf("%02d", i);
 
