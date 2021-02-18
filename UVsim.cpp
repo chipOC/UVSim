@@ -138,8 +138,8 @@ bool UVSim::insertInstruction(int index, int data)
 
 void UVSim::dumpMemory()
 {
-	static constexpr int numColumns = 10;
-	static constexpr int numRows = 10;
+	static const int numColumns = 10;
+	static const int numRows = 10;
 	printf("\nMEMORY:\n");
 
 	// top row with column numbers
