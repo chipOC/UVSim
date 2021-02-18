@@ -41,6 +41,19 @@ class UVSim
             //Write to accumlator the word read from mainMemory multiplied by the word read from accumulator
             accumulator.writeWord(mainMemory[value].readWord() * accumulator.readWord());
         }
+        //Branch to a specific location in memory
+        void branch(int jump)
+        {
+            pc.writeWord(jump);
+        }
+        //Branch to a specific location in memory if the accumulator is negative.
+        void branchNeg(int jump)
+        {
+            if (accumulator.readWord() < 0)
+            {
+                pc.writeWord(jump);
+            }
+        }
 
     protected:
         //Initialize the operations
