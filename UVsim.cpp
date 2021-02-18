@@ -148,9 +148,9 @@ void UVSim::dumpMemory()
 		printf("%6d%01d", 0, i);
 	printf("\n");
 
-
+	
 	// printing rows
-	for (int i = 0; i < MAIN_MEMORY_SIZE; i += numColumns)
+	for (int i = 0; i < MAIN_MEMORY_SIZE; i += numColumns) 
 	{
 		printf("%02d", i);
 
