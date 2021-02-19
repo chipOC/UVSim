@@ -9,34 +9,18 @@ class UVSim
         //METHODS
 
         //Add a word from a specific location in memory to the word in the accumulator (leave the result in the accumulator)
-        void add(int value)
-        {
-            //Write to accumlator the word read from mainMemory plus the word read from accumulator
-            accumulator.writeWord(mainMemory[value].readWord() + accumulator.readWord());
-        }
+        void add(int value);
 
         //Subtract a word from a specific location in memory from the word in the accumulator (leave the result in the accumulator)
-        void subtract(int value)
-        {
-            //Write to accumlator the word read from mainMemory minus the word read from accumulator
-            accumulator.writeWord(mainMemory[value].readWord() - accumulator.readWord());
-        }
+        void subtract(int value);
 
         //Divide the word in the accumulator by a word from a specific location in memory (leave the result in the accumulator).
-        void divide(int value)
-        {
-            //Write to accumlator the word read from mainMemory divided by the word read from accumulator
-            accumulator.writeWord(mainMemory[value].readWord() / accumulator.readWord());
-        }
+        void divide(int value);
 
         //multiply a word from a specific location in memory to the word in the accumulator (leave the result in the accumulator).
-        void multiply(int value)
-        {
-            //Write to accumlator the word read from mainMemory multiplied by the word read from accumulator
-            accumulator.writeWord(mainMemory[value].readWord() * accumulator.readWord());
-        }
+        void multiply(int value);
 
-
+        //Main execute command that will start the main memory
         int execute();
 
     protected:
