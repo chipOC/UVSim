@@ -73,8 +73,7 @@ int UVSim::execute() {
 		// Load/Store
 		case LOAD: 
 		{
-			// TODO call load function
-			// load(instruction.getOperand())
+			this->load(instruction.getOperand());
 			pc.increment();
 			break;
 		}
