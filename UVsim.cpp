@@ -13,6 +13,7 @@ UVSim::~UVSim()
 	//Deconstructor crap
 }
 
+<<<<<<< HEAD
 void UVSim::branch(int jump)
 {
     pc.writeWord(jump);
@@ -43,6 +44,38 @@ void UVSim::dumpStateInfo()
     dumpMemory();
 }
 
+=======
+
+//Add a word from a specific location in memory to the word in the accumulator (leave the result in the accumulator)
+void UVSim::add(int value)
+{
+	//Write to accumlator the word read from mainMemory plus the word read from accumulator
+	accumulator.writeWord(mainMemory[value].readWord() + accumulator.readWord());
+}
+
+//Subtract a word from a specific location in memory from the word in the accumulator (leave the result in the accumulator)
+void UVSim::subtract(int value)
+{
+	//Write to accumlator the word read from mainMemory minus the word read from accumulator
+	accumulator.writeWord(mainMemory[value].readWord() - accumulator.readWord());
+}
+
+//Divide the word in the accumulator by a word from a specific location in memory (leave the result in the accumulator).
+void UVSim::divide(int value)
+{
+	//Write to accumlator the word read from mainMemory divided by the word read from accumulator
+	accumulator.writeWord(mainMemory[value].readWord() / accumulator.readWord());
+}
+
+//multiply a word from a specific location in memory to the word in the accumulator (leave the result in the accumulator).
+void UVSim::multiply(int value)
+{
+	//Write to accumlator the word read from mainMemory multiplied by the word read from accumulator
+	accumulator.writeWord(mainMemory[value].readWord() * accumulator.readWord());
+}
+
+
+>>>>>>> 8fd72292fd41c59442f22ef9ae8a4074b740a3ad
 int UVSim::execute() {
 
 	bool stillRunning = true;
