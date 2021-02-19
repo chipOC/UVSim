@@ -13,6 +13,36 @@ UVSim::~UVSim()
 	//Deconstructor crap
 }
 
+void UVSim::branch(int jump)
+{
+    pc.writeWord(jump);
+}
+
+void UVSim::branchNeg(int jump)
+{
+    if (accumulator.readWord() < 0)
+        {
+            pc.writeWord(jump);
+        }
+}
+void UVSim::branchZero(int jump)
+{
+	if(accumulator.readWord()==0)
+	{
+		pc.writeWord(jump);
+	}
+}
+void UVSim::dumpStateInfo()
+{
+    cout << "REGISTERS:" << endl; 
+    cout << "Accumulator:            " << accumulator.readWord() << endl;
+    cout << "InstructionCounter:        " << pc.readWord() << endl;
+    cout << "InstructionRegister:    " << mainMemory[pc.readWord()].readWord()<< endl;
+    cout << "OperationCode:             " << mainMemory[pc.readWord()].getOpCode() << endl;
+    cout << "Operand:                   " << mainMemory[pc.readWord()].getOperand() << endl << endl;
+    dumpMemory();
+}
+
 int UVSim::execute() {
 
 	bool stillRunning = true;
@@ -111,6 +141,7 @@ int UVSim::execute() {
 
 		case HALT: 
 		{
+			dumpStateInfo();
 			stillRunning = false;
 			break;
 		}

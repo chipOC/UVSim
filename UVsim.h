@@ -55,18 +55,17 @@ class UVSim
             accumulator.writeWord(mainMemory[value].readWord() * accumulator.readWord());
         }
         //Branch to a specific location in memory
-        void branch(int jump)
-        {
-            pc.writeWord(jump);
-        }
+        void branch(int jump);
+
         //Branch to a specific location in memory if the accumulator is negative.
-        void branchNeg(int jump)
-        {
-            if (accumulator.readWord() < 0)
-            {
-                pc.writeWord(jump);
-            }
-        }
+        void branchNeg(int jump);
+
+        //Branch to a specific location in memory if the accumulator is zero
+        void branchZero(int jump);
+
+        //provides information on the registers and memory
+        void dumpStateInfo();
+
 
     protected:
         //Initialize the operations
