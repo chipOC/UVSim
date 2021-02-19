@@ -58,7 +58,6 @@ class UVSim
         // dumps all mainMemory as int for debugging. Is called by dumpStateInfo
         void dumpMemory();
 
-
     protected:
         //Initialize the operations
         //Memory allocation of 100 all initialized to 0
