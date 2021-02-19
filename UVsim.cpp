@@ -13,6 +13,59 @@ UVSim::~UVSim()
 	//Deconstructor crap
 }
 
+bool UVSim::read(int index)
+{
+	return false;
+}
+
+bool UVSim::write(int index)
+{
+	return false;
+}
+
+void UVSim::load(int value)
+{
+	accumulator.writeWord(mainMemory[value].readWord());
+}
+
+void UVSim::store(int value)
+{
+	int valueToWrite = accumulator.readWord();
+	mainMemory[value].writeWord(valueToWrite);
+}
+
+void UVSim::branch(int jump)
+{
+    pc.writeWord(jump);
+}
+
+void UVSim::branchNeg(int jump)
+{
+    if (accumulator.readWord() < 0)
+        {
+            pc.writeWord(jump);
+        }
+}
+
+void UVSim::branchZero(int jump)
+{
+	if(accumulator.readWord()==0)
+	{
+		pc.writeWord(jump);
+	}
+}
+
+void UVSim::dumpStateInfo()
+{
+    cout << "REGISTERS:"																<< endl; 
+    cout << "Accumulator:            "		<< accumulator.readWord()					<< endl;
+    cout << "InstructionCounter:        "	<< pc.readWord()							<< endl;
+    cout << "InstructionRegister:    "		<< mainMemory[pc.readWord()].readWord()		<< endl;
+    cout << "OperationCode:             "	<< mainMemory[pc.readWord()].getOpCode()	<< endl;
+    cout << "Operand:                   "	<< mainMemory[pc.readWord()].getOperand()	<< endl << endl;
+    dumpMemory();
+}
+
 
 //Add a word from a specific location in memory to the word in the accumulator (leave the result in the accumulator)
 void UVSim::add(int value)
@@ -56,16 +109,14 @@ int UVSim::execute() {
 		// IO
 		case READ:
 		{
-			// TODO call read function
-			// read(instruction.getOperand())
+			this->read(instruction.getOperand());
 			pc.increment();
 			break;
 		}
 
 		case WRITE: 
 		{
-			// TODO call write function
-			// write(instruction.getOperand())
+			this->write(instruction.getOperand());
 			pc.increment();
 			break;
 		}
@@ -80,8 +131,7 @@ int UVSim::execute() {
 
 		case STORE:
 		{
-			// TODO call store function
-			// store(instruction.getOperand())
+			this->store(instruction.getOperand());
 			pc.increment();
 			break;
 		}
@@ -120,27 +170,25 @@ int UVSim::execute() {
 		// Control Operations
 		case BRANCH: 
 		{
-			// TODO call branch function
-			// branch(instruction.getOperand())
+			this->branch(instruction.getOperand());
 			break;
 		}
 
 		case BRANCHNEG: 
 		{
-			// TODO call branchNeg function
-			// branchNeg(instruction.getOperand())
+			this->branchNeg(instruction.getOperand());
 			break;
 		}
 
 		case BRANCHZERO: 
 		{
-			// TODO call branchZero function
-			// branchZero(instruction.getOperand())
+			this->branchZero(instruction.getOperand());
 			break;
 		}
 
 		case HALT: 
 		{
+			this->dumpStateInfo();
 			stillRunning = false;
 			break;
 		}
