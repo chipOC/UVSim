@@ -28,11 +28,7 @@ class UVSim
 
         //Main execute command that will start the main memory
         int execute();
-        void multiply(int value)
-        {
-            //Write to accumlator the word read from mainMemory multiplied by the word read from accumulator
-            accumulator.writeWord(mainMemory[value].readWord() * accumulator.readWord());
-        }
+      
 
     protected:
         //Initialize the operations
