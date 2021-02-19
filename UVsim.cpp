@@ -113,8 +113,7 @@ int UVSim::execute() {
 
 		case STORE:
 		{
-			// TODO call store function
-			// store(instruction.getOperand())
+			this->store(instruction.getOperand());
 			pc.increment();
 			break;
 		}
@@ -153,28 +152,25 @@ int UVSim::execute() {
 		// Control Operations
 		case BRANCH: 
 		{
-			// TODO call branch function
-			// branch(instruction.getOperand())
+			this->branch(instruction.getOperand());
 			break;
 		}
 
 		case BRANCHNEG: 
 		{
-			// TODO call branchNeg function
-			// branchNeg(instruction.getOperand())
+			this->branchNeg(instruction.getOperand());
 			break;
 		}
 
 		case BRANCHZERO: 
 		{
-			// TODO call branchZero function
-			// branchZero(instruction.getOperand())
+			this->branchZero(instruction.getOperand());
 			break;
 		}
 
 		case HALT: 
 		{
-			dumpStateInfo();
+			this->dumpStateInfo();
 			stillRunning = false;
 			break;
 		}
