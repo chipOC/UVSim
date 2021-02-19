@@ -1,5 +1,5 @@
-constexpr int MAX_WORD_VALUE = 9999;
-constexpr int MIN_WORD_VALUE = -9999;
+const int MAX_WORD_VALUE = 9999;
+const int MIN_WORD_VALUE = -9999;
 
 struct word {
 public:

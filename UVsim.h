@@ -1,5 +1,7 @@
 #include "dataType.h"
 
+static const int MAIN_MEMORY_SIZE = 100;
+
 class UVSim
 {
     public:
@@ -7,6 +9,10 @@ class UVSim
         ~UVSim();
 
         //METHODS
+
+        int execute();
+        bool insertInstruction(int index, int data); // inserts integer into memory index
+        void dumpMemory(); // dumps all mainMemory as int for debugging
 
         //Add a word from a specific location in memory to the word in the accumulator (leave the result in the accumulator)
         void add(int value);
@@ -22,11 +28,16 @@ class UVSim
 
         //Main execute command that will start the main memory
         int execute();
+        void multiply(int value)
+        {
+            //Write to accumlator the word read from mainMemory multiplied by the word read from accumulator
+            accumulator.writeWord(mainMemory[value].readWord() * accumulator.readWord());
+        }
 
     protected:
         //Initialize the operations
         //Memory allocation of 100 all initialized to 0
-        word mainMemory[100] = { };
+        word mainMemory[MAIN_MEMORY_SIZE] = { };
 
         //program counter
         word pc = word(0);       //Holds the index for the next instruction to be executed from mainMemory

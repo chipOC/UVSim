@@ -1,5 +1,6 @@
 #include <UVsim.h>
 #include <iostream>
+#include <cstdio>
 
 
 UVSim::UVSim()
@@ -48,20 +49,24 @@ int UVSim::execute() {
 
 	while (stillRunning) {
 
-		switch (pc.getOpCode()) {
+		word instruction = this->mainMemory[pc.readWord()];
+
+		switch (instruction.getOpCode()) {
 
 		// IO
 		case READ:
 		{
 			// TODO call read function
-			// read(pc.getOperand())
+			// read(instruction.getOperand())
+			pc.increment();
 			break;
 		}
 
 		case WRITE: 
 		{
 			// TODO call write function
-			// write(pc.getOperand())
+			// write(instruction.getOperand())
+			pc.increment();
 			break;
 		}
 
@@ -69,14 +74,16 @@ int UVSim::execute() {
 		case LOAD: 
 		{
 			// TODO call load function
-			// load(pc.getOperand())
+			// load(instruction.getOperand())
+			pc.increment();
 			break;
 		}
 
 		case STORE:
 		{
 			// TODO call store function
-			// store(pc.getOperand())
+			// store(instruction.getOperand())
+			pc.increment();
 			break;
 		}
 
@@ -84,29 +91,29 @@ int UVSim::execute() {
 		// Arithmetic
 		case ADD: 
 		{
-			// TODO call add function
-			// add(pc.getOperand())
+			this->add(instruction.getOperand());
+			pc.increment();
 			break;
 		}
 
 		case SUBTRACT: 
 		{
-			// TODO call subtract function
-			// subtract(pc.getOperand())
+			this->subtract(instruction.getOperand());
+			pc.increment();
 			break;
 		}
 
 		case DIVIDE: 
 		{
-			// TODO call divide function
-			// divide(pc.getOperand())
+			this->divide(instruction.getOperand());
+			pc.increment();
 			break;
 		}
 
 		case MULTIPLY: 
 		{
-			// TODO call multiply function
-			// multiply(pc.getOperand())
+			this->multiply(instruction.getOperand());
+			pc.increment();
 			break;
 		}
 
@@ -115,21 +122,21 @@ int UVSim::execute() {
 		case BRANCH: 
 		{
 			// TODO call branch function
-			// branch(pc.getOperand())
+			// branch(instruction.getOperand())
 			break;
 		}
 
 		case BRANCHNEG: 
 		{
 			// TODO call branchNeg function
-			// branchNeg(pc.getOperand())
+			// branchNeg(instruction.getOperand())
 			break;
 		}
 
 		case BRANCHZERO: 
 		{
 			// TODO call branchZero function
-			// branchZero(pc.getOperand())
+			// branchZero(instruction.getOperand())
 			break;
 		}
 
@@ -141,7 +148,7 @@ int UVSim::execute() {
 
 		default:
 		{
-			std::cerr << "Error: Improper or unimplemented opcode [" << pc.getOpCode() << "] found\n";
+			std::cerr << "Error: Improper or unimplemented opcode [" << instruction.getOpCode() << "] found. PC has a value of [" << pc.readWord() << "]\n";
 			return -1;
 		}
 		}
@@ -149,4 +156,38 @@ int UVSim::execute() {
 
 
 	return 0;
+}
+
+bool UVSim::insertInstruction(int index, int data)
+{
+	if (index >= MAIN_MEMORY_SIZE || index < 0)
+		return false;
+
+	return mainMemory[index].writeWord(data);
+}
+
+void UVSim::dumpMemory()
+{
+	static const int numColumns = 10;
+	static const int numRows = 10;
+	printf("\nMEMORY:\n");
+
+	// top row with column numbers
+	printf("  ");
+	for (int i = 0; i < numColumns; i++)
+		printf("%6d%01d", 0, i);
+	printf("\n");
+
+	
+	// printing rows
+	for (int i = 0; i < MAIN_MEMORY_SIZE; i += numColumns) 
+	{
+		printf("%02d", i);
+
+		for (int j = 0; j < numColumns; j++)
+			printf("  %+05d", this->mainMemory[i + j].readWord());
+
+		printf("\n");
+	}
+
 }
