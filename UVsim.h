@@ -14,6 +14,19 @@ class UVSim
         bool insertInstruction(int index, int data); // inserts integer into memory index
         void dumpMemory(); // dumps all mainMemory as int for debugging
 
+        //Load a word from a specific location in memory into the accumulator
+        void load(int value)
+        {
+            accumulator.writeWord(mainMemory[value].readWord());
+        }
+
+        //Store a word from the accumulator into a specific location in memory
+        void store(int value)
+        {
+            int valueToWrite = accumulator.readWord();
+            mainMemory[value].writeWord(valueToWrite);
+        }
+
         //Add a word from a specific location in memory to the word in the accumulator (leave the result in the accumulator)
         void add(int value);
 
@@ -24,7 +37,24 @@ class UVSim
         void divide(int value);
 
         //multiply a word from a specific location in memory to the word in the accumulator (leave the result in the accumulator).
+
         void multiply(int value);
+    
+        //Branch to a specific location in memory
+        void branch(int jump)
+        {
+            pc.writeWord(jump);
+        }
+        //Branch to a specific location in memory if the accumulator is negative.
+        void branchNeg(int jump)
+        {
+            if (accumulator.readWord() < 0)
+            {
+                pc.writeWord(jump);
+            }
+        }
+
+  
 
         //Main execute command that will start the main memory
         int execute();
