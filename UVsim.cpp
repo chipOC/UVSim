@@ -13,7 +13,27 @@ UVSim::~UVSim()
 	//Deconstructor crap
 }
 
-<<<<<<< HEAD
+bool UVSim::read(int index)
+{
+	return false;
+}
+
+bool UVSim::write(int index)
+{
+	return false;
+}
+
+void UVSim::load(int value)
+{
+	accumulator.writeWord(mainMemory[value].readWord());
+}
+
+void UVSim::store(int value)
+{
+	int valueToWrite = accumulator.readWord();
+	mainMemory[value].writeWord(valueToWrite);
+}
+
 void UVSim::branch(int jump)
 {
     pc.writeWord(jump);
@@ -26,6 +46,7 @@ void UVSim::branchNeg(int jump)
             pc.writeWord(jump);
         }
 }
+
 void UVSim::branchZero(int jump)
 {
 	if(accumulator.readWord()==0)
@@ -33,18 +54,18 @@ void UVSim::branchZero(int jump)
 		pc.writeWord(jump);
 	}
 }
+
 void UVSim::dumpStateInfo()
 {
-    cout << "REGISTERS:" << endl; 
-    cout << "Accumulator:            " << accumulator.readWord() << endl;
-    cout << "InstructionCounter:        " << pc.readWord() << endl;
-    cout << "InstructionRegister:    " << mainMemory[pc.readWord()].readWord()<< endl;
-    cout << "OperationCode:             " << mainMemory[pc.readWord()].getOpCode() << endl;
-    cout << "Operand:                   " << mainMemory[pc.readWord()].getOperand() << endl << endl;
+    cout << "REGISTERS:"																<< endl; 
+    cout << "Accumulator:            "		<< accumulator.readWord()					<< endl;
+    cout << "InstructionCounter:        "	<< pc.readWord()							<< endl;
+    cout << "InstructionRegister:    "		<< mainMemory[pc.readWord()].readWord()		<< endl;
+    cout << "OperationCode:             "	<< mainMemory[pc.readWord()].getOpCode()	<< endl;
+    cout << "Operand:                   "	<< mainMemory[pc.readWord()].getOperand()	<< endl << endl;
     dumpMemory();
 }
 
-=======
 
 //Add a word from a specific location in memory to the word in the accumulator (leave the result in the accumulator)
 void UVSim::add(int value)
@@ -75,7 +96,6 @@ void UVSim::multiply(int value)
 }
 
 
->>>>>>> 8fd72292fd41c59442f22ef9ae8a4074b740a3ad
 int UVSim::execute() {
 
 	bool stillRunning = true;
@@ -89,16 +109,14 @@ int UVSim::execute() {
 		// IO
 		case READ:
 		{
-			// TODO call read function
-			// read(instruction.getOperand())
+			this->read(instruction.getOperand());
 			pc.increment();
 			break;
 		}
 
 		case WRITE: 
 		{
-			// TODO call write function
-			// write(instruction.getOperand())
+			this->write(instruction.getOperand());
 			pc.increment();
 			break;
 		}

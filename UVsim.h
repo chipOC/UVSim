@@ -1,5 +1,7 @@
 #include "dataType.h"
 
+using namespace std;
+
 static const int MAIN_MEMORY_SIZE = 100;
 
 class UVSim
@@ -10,22 +12,23 @@ class UVSim
 
         //METHODS
 
+        //Main execute command that will start the main memory
         int execute();
-        bool insertInstruction(int index, int data); // inserts integer into memory index
-        void dumpMemory(); // dumps all mainMemory as int for debugging
+
+        // inserts integer into memory index
+        bool insertInstruction(int index, int data);
+
+        // Reads a word from the keyboard into a specific memory location
+        bool read(int index);
+
+        // Writes a word from a specific memory location to the screen
+        bool write(int index);
 
         //Load a word from a specific location in memory into the accumulator
-        void load(int value)
-        {
-            accumulator.writeWord(mainMemory[value].readWord());
-        }
+        void load(int value);
 
         //Store a word from the accumulator into a specific location in memory
-        void store(int value)
-        {
-            int valueToWrite = accumulator.readWord();
-            mainMemory[value].writeWord(valueToWrite);
-        }
+        void store(int value);
 
         //Add a word from a specific location in memory to the word in the accumulator (leave the result in the accumulator)
         void add(int value);
@@ -50,14 +53,10 @@ class UVSim
         void branchZero(int jump);
 
         //provides information on the registers and memory
-        void dumpStateInfo();
+        void dumpStateInfo();   
 
-
-  
-
-        //Main execute command that will start the main memory
-        int execute();
-      
+        // dumps all mainMemory as int for debugging. Is called by dumpStateInfo
+        void dumpMemory();
 
 
     protected:

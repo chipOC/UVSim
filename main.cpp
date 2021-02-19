@@ -92,7 +92,5 @@ int main() {
 
 	machine.execute();
 
-	machine.dumpMemory();
-
 	return 0;
 }
