@@ -58,8 +58,6 @@ class UVSim
 
         //Main execute command that will start the main memory
         int execute();
-      
-
 
     protected:
         //Initialize the operations
