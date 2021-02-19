@@ -14,6 +14,19 @@ class UVSim
         bool insertInstruction(int index, int data); // inserts integer into memory index
         void dumpMemory(); // dumps all mainMemory as int for debugging
 
+        //Load a word from a specific location in memory into the accumulator
+        void load(int value)
+        {
+            accumulator.writeWord(mainMemory[value].readWord());
+        }
+
+        //Store a word from the accumulator into a specific location in memory
+        void store(int value)
+        {
+            int valueToWrite = accumulator.readWord();
+            mainMemory[value].writeWord(valueToWrite);
+        }
+
         //Add a word from a specific location in memory to the word in the accumulator (leave the result in the accumulator)
         void add(int value)
         {
