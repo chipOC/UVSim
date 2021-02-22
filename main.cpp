@@ -22,10 +22,11 @@ int main() {
 
 	// debugging. Comment out these lines when not debugging
 	// -----------------------------------------------------
-	ifstream debugFile;
-	debugFile.open("debugInput.txt");
-	cin.rdbuf(debugFile.rdbuf());
-#define UVSIM_DEBUGGING
+	//ifstream debugFile;
+	//debugFile.open("debugInput.txt");
+	//auto cin_buffer = cin.rdbuf();
+	//cin.rdbuf(debugFile.rdbuf());
+	//#define UVSIM_DEBUGGING
 	// -----------------------------------------------------
 
 	// program variables
@@ -86,6 +87,10 @@ int main() {
 			}
 		}
 	}
+
+#ifdef UVSIM_DEBUGGING
+	cin.rdbuf(cin_buffer);
+#endif
 
 	cout << "*** Program loading completed ***\n";
 	cout << "*** Program execution begins  ***\n";
