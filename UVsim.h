@@ -44,13 +44,13 @@ class UVSim
         void multiply(int value);
     
         //Branch to a specific location in memory
-        void branch(int jump);
+        bool branch(int jump);
 
         //Branch to a specific location in memory if the accumulator is negative.
-        void branchNeg(int jump);
+        bool branchNeg(int jump);
 
         //Branch to a specific location in memory if the accumulator is zero
-        void branchZero(int jump);
+        bool branchZero(int jump);
 
         //provides information on the registers and memory
         void dumpStateInfo();   

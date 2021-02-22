@@ -1,7 +1,8 @@
 #include <UVsim.h>
 #include <iostream>
 #include <cstdio>
-
+#include <string>
+using namespace std;
 
 UVSim::UVSim()
 {
@@ -15,11 +16,50 @@ UVSim::~UVSim()
 
 bool UVSim::read(int index)
 {
-	return false;
+	//std::string input;
+	//std::cin >> input;
+	//return mainMemory[index].writeWord(stoi(input));
+
+	while (true) {
+
+		int inputNum = 0;
+		bool inputFailed = !(std::cin >> inputNum);
+
+		// lets you see the file input as if it were input normally while debugging
+
+		if (inputFailed)
+		{
+			cout << "*** Please input a valid number between -9999 and +9999 ***\n";
+			cout << "*** Enter -99999 to exit                                ***\n";
+			cin.clear();
+		}
+		//
+		// bounds checking on input
+		else if (inputNum > MAX_WORD_VALUE || inputNum < MIN_WORD_VALUE)
+		{
+			cout << "*** Please input a valid number between -9999 and +9999 ***\n";
+			cout << "*** Enter -99999 to exit                                ***\n";
+		}
+		//
+		// Insertion of data. Crash if fail
+		else if (this->insertInstruction(index, inputNum) == true)
+		{
+
+			return true;
+		}
+		else {
+
+			cout << "Error: Integer did not read correctly\n";
+
+		}
+
+	}
 }
+
 
 bool UVSim::write(int index)
 {
+	cout << "Outputted number is :" << mainMemory[index].readWord() << '\n';
 	return false;
 }
 
@@ -34,24 +74,34 @@ void UVSim::store(int value)
 	mainMemory[value].writeWord(valueToWrite);
 }
 
-void UVSim::branch(int jump)
+bool UVSim::branch(int jump)
 {
     pc.writeWord(jump);
+	return true;
 }
 
-void UVSim::branchNeg(int jump)
+bool UVSim::branchNeg(int jump)
 {
     if (accumulator.readWord() < 0)
         {
             pc.writeWord(jump);
+			return true;
         }
+	else
+	{
+		return false;
+	}
 }
 
-void UVSim::branchZero(int jump)
+bool UVSim::branchZero(int jump)
 {
 	if(accumulator.readWord()==0)
 	{
 		pc.writeWord(jump);
+		return true;
+	}
+	else {
+		return false;
 	}
 }
 
@@ -176,13 +226,21 @@ int UVSim::execute() {
 
 		case BRANCHNEG: 
 		{
-			this->branchNeg(instruction.getOperand());
+			if (this->branchNeg(instruction.getOperand()) == false)
+			{
+				// increment pc only if the branch condition is not met
+				pc.increment();
+			}
 			break;
 		}
 
 		case BRANCHZERO: 
 		{
-			this->branchZero(instruction.getOperand());
+			if (this->branchZero(instruction.getOperand()) == false)
+			{
+				// increment pc only if the branch condition is not met
+				pc.increment();
+			}
 			break;
 		}
 
