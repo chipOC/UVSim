@@ -20,6 +20,9 @@ bool UVSim::read(int index)
 	//std::cin >> input;
 	//return mainMemory[index].writeWord(stoi(input));
 
+	
+	// TODO add output saying "Input an integer"
+	
 	while (true) {
 
 		int inputNum = 0;
