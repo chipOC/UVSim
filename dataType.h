@@ -1,3 +1,6 @@
+#ifndef UVSIM_DATATYPE_H
+#define UVSIM_DATATYPE_H
+
 const int MAX_WORD_VALUE = 9999;
 const int MIN_WORD_VALUE = -9999;
 
@@ -20,3 +23,5 @@ protected:
 
 	word& operator=(const int&) = delete; // Disables the assignment operator for int. Whenever assigning an int value to a word, do it through the writeWord() method
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef UVSIM_UVSIM_H
+#define UVSIM_UVSIM_H
+
 #include "dataType.h"
 
 using namespace std;
@@ -86,4 +89,8 @@ class UVSim
         static const int BRANCHNEG = 41;   //Branch to a specific location in memory if the accumulator is negative.
         static const int BRANCHZERO = 42;  //Branch to a specific location in memory if the accumulator is zero.
         static const int HALT = 43;        //Pause the program
+
+        friend class MainWindow;
 };
+
+#endif
